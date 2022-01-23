@@ -62,105 +62,105 @@ function testTime() {
   // Adjusts current time to the hour
   currentTime = currentTime.startOf("hour")
   if (currentTime.isAfter(time1)) {
-      $(".form9").addClass("past")
+    $(".form9").addClass("past")
   }
   else if (currentTime.isBefore(time1)) {
-      $(".form9").addClass("future")
+    $(".form9").addClass("future")
   }
   else if (currentTime.isSame(time1)) {
-      $(".form9").addClass("present")
+    $(".form9").addClass("present")
   };
   // Add block2 10AM
   time2 = moment().startOf('day').add(10, "hours")
   if (currentTime.isAfter(time2)) {
-      $(".form10").addClass("past")
+    $(".form10").addClass("past")
   }
   else if (currentTime.isBefore(time2)) {
-      $(".form10").addClass("future")
+    $(".form10").addClass("future")
   }
   else if (currentTime.isSame(time2)) {
-      $(".form10").addClass("present")
+    $(".form10").addClass("present")
   };
   // block3 11AM
   time3 = moment().startOf('day').add(11, "hours");
   if (currentTime.isAfter(time3)) {
-      $(".form11").addClass("past")
+    $(".form11").addClass("past")
   }
   else if (currentTime.isBefore(time3)) {
-      $(".form11").addClass("future")
+    $(".form11").addClass("future")
   }
   else if (currentTime.isSame(time3)) {
-      $(".form11").addClass("present")
+    $(".form11").addClass("present")
   };
   // block4 12PM
   time4 = moment().startOf('day').add(12, "hours");
   if (currentTime.isAfter(time4)) {
-      $(".form12").addClass("past")
+    $(".form12").addClass("past")
   }
   else if (currentTime.isBefore(time4)) {
-      $(".form12").addClass("future")
+    $(".form12").addClass("future")
   }
   else if (currentTime.isSame(time4)) {
-      $(".form12").addClass("present")
+    $(".form12").addClass("present")
   };
   // block5 1PM
   time5 = moment().startOf('day').add(13, "hours")
   if (currentTime.isAfter(time5)) {
-      $(".form1").addClass("past")
+    $(".form1").addClass("past")
   }
   else if (currentTime.isBefore(time5)) {
-      $(".form1").addClass("future")
+    $(".form1").addClass("future")
   }
   else if (currentTime.isSame(time5)) {
-      $(".form1").addClass("present")
+    $(".form1").addClass("present")
   };
   // block6 2PM
   time6 = moment().startOf('day').add(14, "hours")
   if (currentTime.isAfter(time6)) {
-      $(".form2").addClass("past")
+    $(".form2").addClass("past")
   }
   else if (currentTime.isBefore(time6)) {
-      $(".form2").addClass("future")
+    $(".form2").addClass("future")
   }
   else if (currentTime.isSame(time6)) {
-      $(".form2").addClass("present")
+    $(".form2").addClass("present")
   };
   // block7 3pm
   time7 = moment().startOf('day').add(15, "hours")
   if (currentTime.isAfter(time7)) {
-      $(".form3").addClass("past")
+    $(".form3").addClass("past")
   }
   else if (currentTime.isBefore(time7)) {
-      $(".form3").addClass("future")
+    $(".form3").addClass("future")
   }
   else if (currentTime.isSame(time7)) {
-      $(".form3").addClass("present")
+    $(".form3").addClass("present")
   };
   // block8 4pm
   time8 = moment().startOf('day').add(16, "hours")
   if (currentTime.isAfter(time8)) {
-      $(".form4").addClass("past")
+    $(".form4").addClass("past")
   }
   else if (currentTime.isBefore(time8)) {
-      $(".form4").addClass("future")
+    $(".form4").addClass("future")
   }
   else if (currentTime.isSame(time8)) {
-      $(".form4").addClass("present")
+    $(".form4").addClass("present")
   };
   // block9 5pm
   time9 = moment().startOf('day').add(17, "hours")
   if (currentTime.isAfter(time9)) {
-      $(".form5").addClass("past")
+    $(".form5").addClass("past")
   }
   else if (currentTime.isBefore(time9)) {
-      $(".form5").addClass("future")
+    $(".form5").addClass("future")
   }
   else if (currentTime.isSame(time9)) {
-      $(".form5").addClass("present")
+    $(".form5").addClass("present")
   }
 }
 
-  
+
 function save() {
   console.log("save")
   // need local storage
@@ -168,24 +168,36 @@ function save() {
 
 // I want to save changes to local storage
 const buttonsave = document.querySelectorAll(
-    ".saveBtn"
-  )
-  // creates loop to look at every save button in the array
-  for (i=0; i < buttonsave.length; i++) {
-    console.log(buttonsave[i])
-    buttonsave[i].addEventListener("click", save)
+  ".saveBtn"
+)
+// creates loop to look at every save button in the array
+for (i = 0; i < buttonsave.length; i++) {
+  console.log(buttonsave[i])
+  buttonsave[i].addEventListener("click", save)
 
-  }
+}
+
+testTime();
+// Loops through input area to get item from local storage
+var x = [9, 10, 11, 12, 1, 2, 3, 4, 5];
+// Test loop:
+for (var i = 0; i < x.length; i++) {
+  var dataHour = localStorage.getItem(x[i]);
+  // form - control
+  $(".form" + x[i]).val(dataHour);
+}
+
+$(".saveBtn").click(function () {
+  event.preventDefault();
+  var formValue = $(this).siblings(".form-control").val();
+  console.log("This worked");
+  var listItem = $(this).parent().data("hour");
+
+  localStorage.setItem(listItem, formValue);
+});
 
 
 
-  console.log(buttonsave)
-  
-  // function save() {
-  //   console.log("save")
-  //   window.save()
-  // }
-  
 
 // Alert Message: "I just saved to local storage"
 
