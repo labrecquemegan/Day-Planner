@@ -160,23 +160,6 @@ function testTime() {
   }
 }
 
-
-function save() {
-  console.log("save")
-  // need local storage
-}
-
-// I want to save changes to local storage
-const buttonsave = document.querySelectorAll(
-  ".saveBtn"
-)
-// creates loop to look at every save button in the array
-for (i = 0; i < buttonsave.length; i++) {
-  console.log(buttonsave[i])
-  buttonsave[i].addEventListener("click", save)
-
-}
-
 testTime();
 // Loops through input area to get item from local storage
 var x = [9, 10, 11, 12, 1, 2, 3, 4, 5];
@@ -187,9 +170,24 @@ for (var i = 0; i < x.length; i++) {
   $(".form" + x[i]).val(dataHour);
 }
 
-$(".saveBtn").click(function () {
+
+const buttonsave = document.querySelectorAll(".saveBtn")
+
+function save() {
+// I want to save changes to local storage
+// creates loop to look at every save button in the array
+for (i = 0; i < buttonsave.length; i++) {
+  console.log(buttonsave[i])
+}
+buttonsave[i].addEventListener("click", save)
+
+}
+
+
+
+$(".saveBtn").click(function (event) {
   event.preventDefault();
-  var formValue = $(this).siblings(".form-control").val();
+  var formValue = $(this).siblings(".form").val();
   console.log("This worked");
   var listItem = $(this).parent().data("hour");
 
@@ -199,5 +197,4 @@ $(".saveBtn").click(function () {
 
 
 
-// Alert Message: "I just saved to local storage"
 
