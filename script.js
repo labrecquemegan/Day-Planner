@@ -165,7 +165,10 @@ testTime();
 var x = [9, 10, 11, 12, 1, 2, 3, 4, 5];
 // Test loop:
 for (var i = 0; i < x.length; i++) {
-  var dataHour = localStorage.getItem(x[i]);
+
+  var num = i + 1
+  var block = "block" + num
+  var dataHour = localStorage.getItem(block);
   // form - control
   $(".form" + x[i]).val(dataHour);
 }
@@ -186,12 +189,11 @@ buttonsave[i].addEventListener("click", save)
 
 
 $(".saveBtn").click(function (event) {
-  event.preventDefault();
-  var formValue = $(this).siblings(".form").val();
-  console.log("This worked");
-  var listItem = $(this).parent().data("hour");
+  event.preventDefault()
+  var formValue = $(this).siblings(".form").val()
+  var listItem = $(this).siblings(".hour").data("hour")
 
-  localStorage.setItem(listItem, formValue);
+  localStorage.setItem(listItem, formValue)
 });
 
 
